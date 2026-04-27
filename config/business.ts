@@ -1,455 +1,202 @@
-/**
- * Business Configuration Schema
- * 
- * This file contains all business-specific data for the website.
- * To customize for a new business, simply update the values in this file.
- * 
- * Future-proof schema supports:
- * - Multiple locations
- * - Multiple phone numbers and social media
- * - Service categories
- * - Gallery images
- * - Team members
- * - Special offers
- */
-
-export interface BusinessLocation {
-  name: string;
-  address: string;
-  city: string;
-  state: string;
-  country: string;
-  coordinates?: {
-    lat: number;
-    lng: number;
-  };
-  phone?: string;
-  hours?: BusinessHours[];
-}
-
-export interface BusinessHours {
-  days: string;
-  hours: string;
-}
-
-export interface Service {
-  id: string;
-  name: string;
-  description: string;
-  icon: string;
-  price?: string;
-  category?: string;
-}
-
-export interface PricingTier {
-  id: string;
-  name: string;
-  price: string;
-  period?: string;
-  description: string;
-  features: string[];
-  highlighted?: boolean;
-  ctaText?: string;
-}
-
-export interface Testimonial {
-  id: string;
-  name: string;
-  role?: string;
-  content: string;
-  rating: number;
-  image?: string;
-  service?: string;
-}
-
-export interface TeamMember {
-  id: string;
-  name: string;
-  role: string;
-  bio?: string;
-  image?: string;
-  social?: {
-    linkedin?: string;
-    twitter?: string;
-  };
-}
-
-export interface FAQ {
-  id: string;
-  question: string;
-  answer: string;
-  category?: string;
-}
-
-export interface SocialMedia {
-  platform: string;
-  url: string;
-  icon: string;
-}
-
-export interface GalleryImage {
-  id: string;
-  url: string;
-  alt: string;
-  category?: string;
-}
-
-export interface SpecialOffer {
-  id: string;
-  title: string;
-  description: string;
-  code?: string;
-  validUntil?: string;
-  discount?: string;
-}
-
-export interface BusinessConfig {
-  // Core Business Info
-  name: string;
-  tagline?: string;
-  description?: string;
-  industry: string;
-  logo?: string;
-  
-  // Contact Information
-  primaryPhone: string;
-  phones?: string[];
-  email: string;
-  whatsapp?: string;
-  
-  // Locations
-  locations: BusinessLocation[];
-  
-  // Operating Hours (default for all locations)
-  hours: BusinessHours[];
-  
-  // Social Media
-  socialMedia?: SocialMedia[];
-  
-  // Services
-  services: Service[];
-  serviceCategories?: string[];
-  
-  // Pricing
-  pricing?: PricingTier[];
-  
-  // Testimonials
-  testimonials?: Testimonial[];
-  
-  // Team
-  team?: TeamMember[];
-  
-  // FAQ
-  faqs?: FAQ[];
-  
-  // Gallery
-  gallery?: GalleryImage[];
-  
-  // Special Offers
-  offers?: SpecialOffer[];
-  
-  // Primary CTA
-  primaryCTA: {
-    text: string;
-    action: 'form' | 'phone' | 'whatsapp' | 'link';
-    value?: string;
-  };
-  
-  // About Section
-  about?: {
-    title: string;
-    content: string;
-    image?: string;
-    stats?: {
-      label: string;
-      value: string;
-    }[];
-  };
-  
-  // How It Works Steps
-  howItWorks?: {
-    id: string;
-    title: string;
-    description: string;
-    icon: string;
-  }[];
-}
-
-/**
- * Caperberry Laundry - Business Configuration
- * Complete data from client + T&Cs + Express Pricing
- */
-
 import { BusinessConfig } from "./types";
 
 export const businessConfig: BusinessConfig = {
-  name: "Caperberry Laundry",
-  tagline: "Premium Care, Proper Laundry",
-  description: "Lagos' trusted laundry service for over 13 years. Special attention to stains, gentle handling, and crisp ironing—because your clothes deserve it.",
-  industry: "Laundry & Fabric Care Services",
-  
-  primaryPhone: "+234 802 834 7146",
-  phones: ["+234 802 834 7146", "+234 813 654 5705"],
-  email: "info@caperberrylaundry.com", // Update when domain is ready
-  whatsapp: "+2348028347146",
-  
+  name: "Perfect Hand Laundry and Dry Cleaning Services",
+  tagline: "Your Clothes, Handled with Care",
+  description: "Mowe's trusted laundry and dry cleaning service. Two convenient locations, professional handling, and a keen eye for stains — because your clothes deserve the best.",
+  industry: "Laundry & Dry Cleaning Services",
+
+  primaryPhone: "+234 706 688 9341",
+  phones: ["+234 706 688 9341"],
+  email: "perfecthandlaundry@gmail.com",
+  whatsapp: "+2347066889341",
+
   locations: [
     {
-      name: "Yaba",
-      address: "Suite 3, Wisdom Cafe, 2001 Cafeteria, Newhall, Unilag, Akoka-Yaba",
-      city: "Lagos",
-      state: "Lagos",
+      name: "Ifokabale Branch",
+      address: "144 Mowe-Ofada Road, Ifokabale Hotel",
+      city: "Mowe",
+      state: "Ogun State",
       country: "Nigeria",
-      phone: "+234 802 834 7146"
+      phone: "+234 706 688 9341"
     },
     {
-      name: "Lekki",
-      address: "Grande Mall, Shop 2A, Second Floor, Orchid Road, Lekki",
-      city: "Lagos",
-      state: "Lagos",
+      name: "Thuraya Branch",
+      address: "Higher Ground Road, Thuraya",
+      city: "Mowe",
+      state: "Ogun State",
       country: "Nigeria",
-      phone: "+234 813 654 5705"
+      phone: "+234 706 688 9341"
     }
   ],
-  
-  // Service Coverage Areas
-  serviceAreas: [
-    "Yaba", "Bariga", "Akoka", "Shomolu", "Gbagada", 
-    "Maryland", "Ikeja", "Orchid", "Lekki", "Chevron", 
-    "Ikota", "Ajah"
-  ],
-  
+
   hours: [
     {
       days: "Monday - Saturday",
       hours: "8:00 AM - 7:00 PM"
+    },
+    {
+      days: "Sunday",
+      hours: "10:00 AM - 4:00 PM"
     }
   ],
-  
+
   socialMedia: [
     {
-      platform: "Facebook",
-      url: "https://facebook.com/caperberrylaundry", // Update with real link
-      icon: "facebook"
-    },
-    {
-      platform: "Instagram",
-      url: "https://instagram.com/caperberrylaundry", // Update with real link
-      icon: "instagram"
-    },
-    {
       platform: "WhatsApp",
-      url: "https://wa.me/2348028347146",
+      url: "https://wa.me/2347066889341",
       icon: "message-circle"
     }
   ],
-  
+
   services: [
     {
-      id: "laundry",
+      id: "wash-fold",
       name: "Wash & Fold",
-      description: "Professional washing and folding service. Note: No special stain treatment included in standard wash & fold.",
+      description: "Professional machine washing and neat folding for your everyday wear. Fresh, clean, and ready to wear.",
       icon: "washing-machine",
       category: "Standard"
     },
     {
       id: "dry-cleaning",
       name: "Dry Cleaning",
-      description: "Expert dry cleaning for delicate fabrics and special garments. Includes stain attention and gentle handling.",
+      description: "Expert dry cleaning for delicate fabrics, suits, gowns, and special garments that need extra care.",
       icon: "shirt",
       category: "Premium"
     },
     {
-      id: "stain-removal",
-      name: "Stain Treatment",
-      description: "We do our best to remove stains, though not all stains can be guaranteed. Please highlight stained garments for proper treatment.",
-      icon: "droplet",
-      category: "Premium"
-    },
-    {
       id: "ironing",
-      name: "Ironing",
-      description: "Crisp, professional ironing for a polished look.",
+      name: "Ironing & Pressing",
+      description: "Crisp, wrinkle-free ironing that gives your clothes that sharp, polished finish.",
       icon: "iron",
       category: "Standard"
     },
     {
+      id: "stain-removal",
+      name: "Stain Treatment",
+      description: "Targeted stain treatment using professional techniques. Please point out stained areas when dropping off.",
+      icon: "droplet",
+      category: "Premium"
+    },
+    {
       id: "express",
-      name: "Express Service (24hrs)",
-      description: "Need it fast? We're happy to help with 24-hour express service. Pricing varies by location.",
+      name: "Express Service",
+      description: "Need it urgently? We offer fast-turnaround cleaning when you're in a hurry. Ask us about availability.",
       icon: "zap",
       category: "Express"
     }
   ],
-  
-  // Express Pricing Policy
-  expressPricing: {
-    unilagStudents: {
-      multiplier: 2,
-      description: "2x Standard rate"
-    },
-    islandClients: {
-      multiplier: 4,
-      description: "4x standard rate"
-    },
-    default: {
-      multiplier: 4,
-      description: "4x standard rate for express service"
-    }
-  },
-  
-  // Pricing will be per-item based on garment type
-  // Client will provide full price list
-  pricingModel: "per-item", // Not per-kg
-  
+
   testimonials: [
     {
       id: "1",
-      name: "Satisfied Customer",
-      content: "Excellent service and attention to detail. My clothes always come back perfect!",
-      rating: 5,
-      service: "Dry Cleaning"
-    },
-    {
-      id: "2",
-      name: "Regular Client",
-      content: "Been using Caperberry for years. Reliable, professional, and affordable.",
+      name: "Bola A.",
+      content: "Best laundry service in Mowe. My clothes always come back smelling fresh and neatly folded. I won't go anywhere else.",
       rating: 5,
       service: "Wash & Fold"
     },
     {
-      id: "3",
-      name: "Business Client",
-      content: "The express service saved me before an important meeting. Highly recommended!",
+      id: "2",
+      name: "Emeka O.",
+      content: "They handled my agbada with so much care. The ironing was perfect. Highly recommend their dry cleaning service.",
       rating: 5,
-      service: "Express Service"
+      service: "Dry Cleaning"
+    },
+    {
+      id: "3",
+      name: "Funmi S.",
+      content: "I had a stubborn stain I thought was gone forever. They treated it and returned the dress looking brand new. Very impressed!",
+      rating: 5,
+      service: "Stain Treatment"
     }
   ],
-  
+
   faqs: [
     {
       id: "1",
-      question: "Where are you located?",
-      answer: "We have two locations: 1) Yaba Branch at Suit 3, Wisdom Cafe, Newhall, Unilag (08028347146), and 2) Lekki Branch at Grande Mall, Shop 2A, Orchid Road (08136545705).",
+      question: "Where are your locations?",
+      answer: "We have two branches in Mowe, Ogun State:\n1. 144 Mowe-Ofada Road, Ifokabale Hotel\n2. Higher Ground Road, Thuraya, Mowe\n\nBoth branches are open Monday to Saturday, 8am – 7pm.",
       category: "Locations"
-    },
-    {
-      id: "1b",
-      question: "What areas do you cover for pickup?",
-      answer: "We serve Yaba, Bariga, Akoka, Shomolu, Gbagada, Maryland, Ikeja, Orchid, Lekki, Chevron, Ikota, and Ajah with free pickup and delivery.",
-      category: "Service Area"
     },
     {
       id: "2",
       question: "What is your turnaround time?",
-      answer: "Standard laundry is ready in 4 working days. We also offer express service with 24-hour turnaround.",
-      category: "Delivery"
+      answer: "Standard orders are ready within 2–4 working days depending on volume. We also offer express service for urgent needs — ask us when you drop off.",
+      category: "Service"
     },
     {
       id: "3",
-      question: "How much is express service?",
-      answer: "Express service (24 hours) costs 2x standard rate for UNILAG students, and 4x standard rate for Island clients and others due to transportation costs.",
-      category: "Pricing"
+      question: "Do you handle delicate fabrics like lace, ankara, or suits?",
+      answer: "Yes! We handle all fabric types including lace, ankara, suits, agbada, gowns, and other delicate materials. Just let us know when dropping off so we treat them with the appropriate care.",
+      category: "Service"
     },
     {
       id: "4",
-      question: "What payment methods do you accept?",
-      answer: "We operate a 100% prepayment policy for all orders. Payment can be made via bank transfer to:\n\nYABA BRANCH:\nAccount: 5799599578 (Moniepoint)\nName: CAPERBERRY FABRIC CARE\n\nORCHID BRANCH (LEKKI):\nAccount: 5195709104 (Moniepoint)\nName: CAPERBERRY FABRIC CARE - ORCHID\n\nPayment is required at drop-off or before pickup is scheduled. You can also pay in cash at our physical locations.",
-      category: "Payment"
+      question: "Can you remove all stains?",
+      answer: "We do our very best on every stain. However, some stains — especially old or set-in ones — may not be fully removable. We'll always let you know if a stain is challenging before we proceed.",
+      category: "Service"
     },
     {
       id: "5",
-      question: "What if my clothes are damaged?",
-      answer: "In the rare event of damage during cleaning, we will reimburse you up to 5 times the laundry charge for that item. Please notify us within 24 hours of delivery.",
-      category: "Policy"
+      question: "How do I contact you or place an order?",
+      answer: "The easiest way is to WhatsApp us on 07066889341 or walk into either of our branches. We're happy to answer questions and get your order started.",
+      category: "Contact"
     },
     {
       id: "6",
-      question: "Do you guarantee stain removal?",
-      answer: "We do our best to remove all stains safely. However, not all stains can be removed. If stain removal would be unsafe or compromise the fabric, we'll inform you and won't charge for that item.",
-      category: "Services"
-    },
-    {
-      id: "7",
-      question: "What happens to unclaimed items?",
-      answer: "Items not picked up 1 month after completion (and notification) may be given out. Please collect your items promptly.",
-      category: "Policy"
-    },
-    {
-      id: "8",
-      question: "Should I check my pockets?",
-      answer: "Yes! Please check all pockets for money, jewelry, or valuables. Caperberry is not liable for lost items left in garments.",
+      question: "What if my item is damaged?",
+      answer: "We handle every garment with the utmost care. In the rare event of damage, please notify us within 24 hours of pickup and we will work with you to resolve it fairly.",
       category: "Policy"
     }
   ],
-  
+
   howItWorks: [
     {
       id: "1",
-      title: "Drop Off or Schedule Pickup",
-      description: "Bring your items to us or schedule a pickup at your convenience",
-      icon: "calendar"
-    },
-    {
-      id: "2",
-      title: "We Count & Invoice",
-      description: "We log all items and generate an invoice. Payment required upfront.",
+      title: "Drop Off Your Items",
+      description: "Bring your clothes to either of our two Mowe branches. Point out any stains or special instructions.",
       icon: "package"
     },
     {
-      id: "3",
-      title: "We Clean with Care",
-      description: "Premium cleaning with attention to stains and gentle handling",
+      id: "2",
+      title: "We Get to Work",
+      description: "Your items are sorted, treated, and cleaned with professional care and the right products.",
       icon: "sparkles"
     },
     {
-      id: "4",
-      title: "Ready in 4 Days",
-      description: "Collect your fresh, clean clothes (or 24hrs for express)",
-      icon: "truck"
+      id: "3",
+      title: "Pick Up Fresh & Clean",
+      description: "Ready in 2–4 days. Collect your neatly folded, crisp, and fresh-smelling clothes.",
+      icon: "check-circle"
     }
   ],
-  
+
   about: {
-    title: "About Caperberry Laundry",
-    content: "Established over 13 years ago, Caperberry Laundry has been Lagos' trusted fabric care partner. We combine traditional expertise with modern techniques to deliver exceptional results. Our commitment to premium care means every garment receives special attention to stains, gentle handling, and crisp ironing. We follow strict quality standards and treat your clothes with the care they deserve.",
+    title: "About Perfect Hand Laundry",
+    content: "Perfect Hand Laundry and Dry Cleaning Services has been serving the Mowe community with dedication and professionalism. With two convenient locations on Mowe-Ofada Road and Higher Ground Road, we make quality fabric care accessible to everyone in the area. From everyday wash and fold to delicate dry cleaning, we treat every item as if it were our own.",
     stats: [
       {
-        label: "Years of Service",
-        value: "13+"
+        label: "Locations in Mowe",
+        value: "2"
       },
       {
-        label: "Service Areas",
-        value: "12+"
+        label: "Services Offered",
+        value: "5+"
       },
       {
         label: "Happy Customers",
-        value: "1000+"
+        value: "500+"
       },
       {
-        label: "Rating",
-        value: "4.8/5"
+        label: "Days a Week",
+        value: "6"
       }
     ]
   },
-  
-  policies: {
-    payment: "100% prepayment required at drop-off",
-    turnaround: "4 working days standard, 24 hours express",
-    expressCharge: "2x for UNILAG students, 4x for Island/Others",
-    damageCompensation: "Up to 5x cleaning charge",
-    reportWindow: "24 hours after delivery",
-    unclaimedItems: "Items may be given out after 1 month"
-  },
-  
-  bankDetails: {
-    bank: "Moniepoint",
-    accountNumber: "5799599578",
-    accountName: "Caperberry Fabric Care"
-  },
-  
+
   primaryCTA: {
-    text: "Schedule Pickup",
-    action: "form"
+    text: "WhatsApp Us Now",
+    action: "whatsapp",
+    value: "https://wa.me/2347066889341"
   }
 };
