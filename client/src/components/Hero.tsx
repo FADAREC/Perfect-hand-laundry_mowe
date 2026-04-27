@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { businessConfig } from "../../../config/business";
-import heroImageDesktop from "../../../attached_assets/generated_images/Laundry_facility_hero_image_25c6c2da.webp";
+import heroImageDesktop from "../../../attached_assets/generated_images/1777302773308.png";
 import { 
   ArrowRight, 
   Phone,
