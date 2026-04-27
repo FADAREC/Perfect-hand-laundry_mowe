@@ -45,7 +45,7 @@ export default function Hero() {
         <div className="absolute inset-0 z-0">
           <img 
             src={heroImageDesktop}
-            alt="Caperberry Laundry facility"
+            alt="Perfect Hands Laundry facility"
             className="w-full h-full object-cover"
             loading="eager"
           />
